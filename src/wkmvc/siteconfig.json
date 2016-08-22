@@ -1,0 +1,48 @@
+﻿{
+  "siteconfig": {
+    //数据库 MSSQL or MYSQL or ORALCE
+    "DataBase": "MYSQL",
+    //是否使用 Redis
+    "UseRedis": "True",
+    //Redis 连接
+    "Redis_ConnectionString": "",
+    //Redis 实例名称
+    "Redis_InstanceName": "",
+    //文件上传路径
+    "FileUpPath": "222",
+    //是否启用单用户登录
+    "IsSingleLogin": "True",
+    //允许上传的文件格式
+    "AttachExtension": "gif,jpg,jpeg,png,bmp,rar,zip,doc,docx,xls,xlsx,ppt,pptx,txt,flv,apk,mp4,mpg,ts,mpeg,mp3,bak,pdf",
+    //图片上传最大值KB
+    "AttachImagesize": 12400,
+    //视频上传最大值KB
+    "AttachVideosize": 12400,
+    //文档上传最大值KB
+    "AttachDocmentsize": 12400,
+    //文件上传最大值KB
+    "AttachFilesize": 5120000,
+    //水印方式1文字2图片
+    "WatermarkType": 1,
+    //水印文字
+    "WatermarkText": "◎果冻布丁喜之郎",
+    //水印位置
+    "WatermarkPosition": 9,
+    //水印质量
+    "WatermarkImgQuality": 80,
+    //水印字体
+    "WatermarkFont": "Microsoft YaHei",
+    //水印文字大小
+    "WatermarkFontsize": 20,
+    //水印图片
+    "WatermarkPic": "",
+    //水印图片透明度
+    "WatermarkTransparency": 5,
+    //缩略图宽度PX
+    "ThumbnailWidth": 200,
+    //缩略图高度PX
+    "ThumbnailHeight": 200,
+    //压缩文件密码
+    "ZipPassword": "6711D4425F15B2C041DAD9BBAC1A588B1C14305A8DBED1371CD7B16AEB774FC958690B4FF89C45ECECD3CE7EA6F93C13"
+  }
+}
