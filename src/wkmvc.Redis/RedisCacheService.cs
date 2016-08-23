@@ -25,12 +25,14 @@ namespace wkmvc.Redis
 
         private readonly string _instance;
 
-        public RedisCacheService(IOptions<RedisCacheOptions> options)
+
+        public RedisCacheService(RedisCacheOptions options)
         {
-            _connection = ConnectionMultiplexer.Connect(options.Value.Configuration);
+            _connection = ConnectionMultiplexer.Connect(options.Configuration);
             _cache = _connection.GetDatabase(0);
-            _instance = options.Value.InstanceName;
+            _instance = options.InstanceName;
         }
+
 
         /// <summary>
         /// 修改Key值为 实例名+Key
@@ -85,8 +87,7 @@ namespace wkmvc.Redis
             {
                 throw new ArgumentNullException(nameof(key));
             }
-
-           return _cache.SetAdd(GetKeyForRedis(key), Encoding.UTF8.GetBytes(value is string ? (string)value : JsonConvert.SerializeObject(value)));
+           return _cache.StringSet(GetKeyForRedis(key), Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)));
         }
 
         /// <summary>
@@ -101,8 +102,7 @@ namespace wkmvc.Redis
             {
                 throw new ArgumentNullException(nameof(key));
             }
-
-           return await _cache.SetAddAsync(GetKeyForRedis(key), Encoding.UTF8.GetBytes(value is string ? (string)value : JsonConvert.SerializeObject(value)));
+            return await _cache.StringSetAsync(GetKeyForRedis(key), Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)));
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace wkmvc.Redis
             {
                 throw new ArgumentNullException(nameof(key));
             }
-            return  _cache.StringSet(GetKeyForRedis(key), Encoding.UTF8.GetBytes(value is string ? (string)value : JsonConvert.SerializeObject(value)),expiressAbsoulte);
+            return  _cache.StringSet(GetKeyForRedis(key), Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)),expiressAbsoulte);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace wkmvc.Redis
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return await _cache.StringSetAsync(GetKeyForRedis(key), Encoding.UTF8.GetBytes(value is string ? (string)value : JsonConvert.SerializeObject(value)), expiressAbsoulte);
+            return await _cache.StringSetAsync(GetKeyForRedis(key), Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)), expiressAbsoulte);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace wkmvc.Redis
             }
 
 
-            return _cache.StringSet(GetKeyForRedis(key), Encoding.UTF8.GetBytes(value is string ? (string)value : JsonConvert.SerializeObject(value)), expiresIn);
+            return _cache.StringSet(GetKeyForRedis(key), Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)), expiresIn);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace wkmvc.Redis
                 throw new ArgumentNullException(nameof(key));
             }
 
-            return await _cache.StringSetAsync(GetKeyForRedis(key), Encoding.UTF8.GetBytes(value is string ? (string)value : JsonConvert.SerializeObject(value)), expiresIn);
+            return await _cache.StringSetAsync(GetKeyForRedis(key), Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)), expiresIn);
         }
         #endregion
 

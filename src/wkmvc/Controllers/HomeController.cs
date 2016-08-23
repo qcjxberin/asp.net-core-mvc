@@ -23,13 +23,14 @@ namespace wkmvc.Controllers
 
         public IActionResult Index()
         {
-
+            _cacheService.Add("test110", "zhangsantet");
+            ViewData["message"] = "";
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = _AppConfigurtaionServices.GetAppSettings<ApplicationConfiguration>("siteconfig").FileUpPath;
+            ViewData["Message"] = _cacheService.Get("test110");
             ViewData["Message2"] = Common.FileHelper.MapPath("/Views/Home/Index.cshml");
 
             return View();

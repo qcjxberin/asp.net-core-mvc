@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class Extensions
-    {
+    {        
         public static IServiceCollection AddWkMvcDI(this IServiceCollection services)
         {
             return services;

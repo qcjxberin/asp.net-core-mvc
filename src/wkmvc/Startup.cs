@@ -63,20 +63,11 @@ namespace wkmvc
 
             if (_cacheProvider._isUseRedis())
             {
-                string redisConnection = _cacheProvider._connectionString(),
-                      redisInstance = _cacheProvider._instanceName();
-
-                services.AddSingleton(factory =>
+                services.AddSingleton(typeof(ICacheService), new RedisCacheService(new RedisCacheOptions
                 {
-                    var options = new RedisCacheOptions
-                    {
-                        Configuration = redisConnection,
-                        InstanceName = redisInstance
-                    };
-
-                    return options;
-                });
-                services.AddSingleton<ICacheService, RedisCacheService>();
+                    Configuration = _cacheProvider._connectionString(),
+                    InstanceName = _cacheProvider._instanceName()
+                }));
             }
             else
             {

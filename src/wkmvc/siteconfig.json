@@ -5,9 +5,9 @@
     //是否使用 Redis
     "UseRedis": "True",
     //Redis 连接
-    "Redis_ConnectionString": "",
+    "Redis_ConnectionString": "10.200.15.30:6379",
     //Redis 实例名称
-    "Redis_InstanceName": "",
+    "Redis_InstanceName": "Test",
     //文件上传路径
     "FileUpPath": "222",
     //是否启用单用户登录
